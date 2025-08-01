@@ -1,0 +1,310 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("./assets/fonts/NeueMontreal-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("./assets/fonts/NeueMontreal-Medium.otf") format("otf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("./assets/fonts/NeueMontreal-Bold.otf") format("otf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PP Editorial New";
+  src: url("./assets/fonts/PPEditorialNew-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+}
+@layer base {
+  html {
+    font-family: var(--font-neue);
+    scroll-behavior: smooth;
+    user-select: none;
+  }
+
+  span {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    color: var(--color-secondary);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+@theme {
+  --font-neue: "Neue Montreal", sans-serif;
+  --font-editorial: "PP Editorial New", serif;
+
+  --color-primary: #ff7542;
+  --color-secondary: #35a3bb;
+  --color-neutral-10: #f0f0f0;
+  --color-neutral-20: #e6e6e6;
+  --color-neutral-30: #cbcbcb;
+  --color-neutral-40: #949494;
+  --color-neutral-50: #272727;
+}
+
+@layer utilities {
+  .layout {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .font-18 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .font-20 {
+    font-size: clamp(1.125rem, 1.08rem + 0.2vw, 1.25rem);
+    line-height: 20px;
+    letter-spacing: -0.01em;
+  }
+  .font-24 {
+    font-size: clamp(1.125rem, 0.99rem + 0.6vw, 1.5rem);
+    line-height: clamp(1.5rem, 1.365rem + 0.6vw, 1.875rem);
+    letter-spacing: -0.01em;
+  }
+  .font-28 {
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: -0.01em;
+  }
+  .font-36 {
+    font-size: clamp(2rem, 1.91rem + 0.4vw, 2.25rem);
+    line-height: clamp(2.625rem, 2.58rem + 0.2vw, 2.75rem);
+    letter-spacing: -0.01em;
+  }
+  .font-40 {
+    font-size: clamp(2rem, 1.82rem + 0.8vw, 2.5rem);
+    line-height: clamp(2.5rem, 2.365rem + 0.6vw, 2.875rem);
+    letter-spacing: -0.01em;
+  }
+  .font-48 {
+    font-size: clamp(2rem, 1.64rem + 1.6vw, 3rem);
+    line-height: clamp(2.625rem, 2.49rem + 0.6vw, 3rem);
+    letter-spacing: -0.01em;
+  }
+  .font-54 {
+    font-size: clamp(1.875rem, 1.29rem + 2.6vw, 3.5rem);
+    line-height: clamp(3.125rem, 3.35rem + -1vw, 2.5rem);
+    letter-spacing: -0.01em;
+  }
+  .font-56 {
+    font-size: clamp(2rem, 1.46rem + 2.4vw, 3.5rem);
+    line-height: clamp(2.625rem, 2.04rem + 2.6vw, 4.25rem);
+    letter-spacing: -0.01em;
+  }
+  .font-102 {
+    font-size: clamp(2.75rem, 1.445rem + 5.8vw, 6.375rem);
+    line-height: clamp(4rem, 3.325rem + 3vw, 5.875rem);
+  }
+  .font-120 {
+    font-size: clamp(4rem, 2.74rem + 5.6vw, 7.5rem);
+    line-height: clamp(5rem, 4.1rem + 4vw, 7.5rem);
+    letter-spacing: -0.01em;
+  }
+}
+
+.line-wrapper {
+  overflow: hidden;
+}
+
+/* project card styling */
+@layer components {
+  .project-card {
+    @apply flex flex-col gap-2 sm:flex-row place-content-between pt-0 sm:pt-5 pb-5 sm:pb-0 border-b border-[#DDDDDD] sm:border-none cursor-pointer;
+  }
+
+  .project-title {
+    @apply font-bold text-neutral-50 sm:text-neutral-30 transition-all duration-300 ease-in-out sm:group-hover:translate-y-[-10px] group-hover:text-neutral-50;
+    font-size: 48px;
+  }
+
+  .project-year {
+    @apply font-bold text-neutral-20 sm:text-neutral-30 flex sm:hidden transition-all duration-300 ease-in-out sm:group-hover:translate-y-[-10px] group-hover:text-neutral-50;
+    font-size: 20px;
+  }
+
+  .project-description {
+    @apply flex flex-row gap-7 place-content-between font-bold text-neutral-40 sm:text-neutral-30 sm:text-right transition-all duration-300 ease-in-out sm:group-hover:translate-y-[-10px] group-hover:text-neutral-50;
+    font-size: 20px;
+  }
+
+  .project-preview {
+    @apply absolute right-0 top-[-300%] opacity-0 sm:group-hover:opacity-100 duration-300 z-10 w-0 sm:w-auto;
+  }
+}
+
+.backtotop-bg {
+  animation: rotatePause 6s linear infinite;
+  transform-origin: center center;
+}
+
+.backtotop-arrow {
+  animation: movePause 6s ease-in-out infinite;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes rotatePause {
+  0% {
+    transform: rotate(0deg);
+  }
+  33.33% {
+    transform: rotate(106deg);
+  }
+  50% {
+    transform: rotate(106deg);
+  }
+  83.33% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes movePause {
+  0% {
+    transform: translate(-50%, 100px);
+  }
+  33.33% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 0); /* pause after forward */
+  }
+  83.33% {
+    transform: translate(-50%, 100px);
+  }
+  100% {
+    transform: translate(-50%, 100px); /* pause after reverse */
+  }
+}
+
+/* hamburger popup */
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.hamburger-wrapper {
+  transform: translateY(-100%);
+  transition: transform 0.4s ease-in-out;
+}
+
+.hamburger-wrapper.open {
+  transform: translateY(0%);
+}
+
+.closeHamburger:hover .close-bg {
+  animation: slow-spin 6s linear infinite;
+}
+
+@keyframes slow-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.popup {
+  transform: translateY(100%);
+  transition: transform 0.4s ease-in-out;
+}
+
+.popup.open {
+  transform: translateY(0%);
+}
+
+.close-popup:hover .close-bg {
+  animation: slow-spin 6s linear infinite;
+}
+
+/* cursor change */
+.project-cursor {
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursor-svg {
+  position: relative;
+  top: -77px;
+  left: -77px;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.cursor-text {
+  position: absolute;
+  top: -25px;
+  left: -35px;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@media (max-width: 639px) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
+/* circling footer svg  */
+/* Custom animations and SVG-specific styles that can't be done with Tailwind alone */
+.circle-text {
+  letter-spacing: 0.95px;
+}
+
+.animated-text {
+  animation: rotate 10s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.open-to-work svg {
+  overflow: visible;
+}
+
+#tuner-line,
+#click-chg {
+  cursor: pointer;
+  transform-origin: 82px 284px;
+  transition: transform 0.4s ease;
+}
